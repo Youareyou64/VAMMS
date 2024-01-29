@@ -6,8 +6,8 @@ import numpy as np
 
 # set this value to number of discrete points in physical system
 global num_points_x, num_points_y 
-num_points_x = 10
-num_points_y = 10
+num_points_x: int = 10
+num_points_y: int = 10
 st = cexprtk.Symbol_Table({'x':1.0, 'y':1.0}, add_constants=True)
 
 class Graph:
@@ -17,7 +17,8 @@ class Graph:
 
         
         n = 5
-        self.z_array = [[0]*num_points_x]*num_points_y
+        # self.z_array = [[0]*num_points_x]*num_points_y
+        self.array = np.zeros((num_points_x, num_points_y))
 
 
         self.parsed_function = cexprtk.Expression(funct, st)
@@ -30,13 +31,15 @@ class Graph:
 
     def fill(self, x_min, x_max, y_min, y_max):
         x_step = (x_max - x_min) / num_points_x
+        print(f"x step set to {x_step}")
         y_step = (y_max - y_min) / num_points_y
 
         for x in range(0, num_points_x, 1):
             for y in range(0, num_points_y, 1):
-                self.z_array[x][y] = self.f(x_min + x * x_step, y_min + y * y_step)
-                print(f"Filled {x}, {y} with f of {x_min + x * x_step}, {y_min + y * y_step} = {self.f(x_min + x * x_step, y_min + y * y_step)}")
-        print(np.matrix(self.z_array))
+                self.array[x,y] = self.f(x_min + x * x_step, y_min + y * y_step)
+                # print(f"Filled {x}, {y} with f of {x_min + x * x_step}, {y_min + y * y_step} = {self.f(x_min + x * x_step, y_min + y * y_step)}")
+                # print(np.matrix(self.array))
+        # print(np.matrix(self.array))
 
 
 
