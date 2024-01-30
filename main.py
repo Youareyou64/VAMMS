@@ -16,6 +16,7 @@ y_max = int(input("Maximum y value (exclusive): ")) or 10
 def generate_graph(function, x_min, x_max, y_min, y_max):
     graph = Graph(function)
     graph.fill(x_min, x_max, y_min, y_max)  # x max, x min, y max, y min
+    graph.scale()
 
 
 generate_graph(raw_function, x_min, x_max, y_min, y_max)

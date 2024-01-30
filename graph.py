@@ -16,6 +16,7 @@ class Graph:
         self.y_step = 1
 
         self.array = np.zeros((num_points_x, num_points_y))
+        self.scaled_array = np.zeros((num_points_x, num_points_y))
 
         self.parsed_function = cexprtk.Expression(funct, st)
         # establish function as an Expression that can be evaluated
@@ -60,10 +61,16 @@ class Graph:
     def scale(self):
         min = self.get_min()
         max = self.get_max()
+        
 
         # Finish this to scale data to available Z height and set appropriate z=0 offset
 
-
+        for x in range(num_points_x):
+            for y in range(num_points_y):
+                self.scaled_array[x, y] = (self.array[x, y] - min)/(max - min)
+                #sets array to be percentage values between 0 and 1 corresponding to height
+        # print("SCALED ARRAY: ")
+        # print(np.matrix(self.scaled_array))
 
 
 
