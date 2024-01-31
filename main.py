@@ -4,7 +4,9 @@ import numpy as np
 
 # Classes
 from graph import Graph
+from connection import Connection
 import renderer
+from renderer import Renderer
 
 raw_function = input("Enter your function: f(x,y)=")
 x_min = int(input("Minimum x value (inclusive): ")) or 0
@@ -17,6 +19,10 @@ def generate_graph(function, x_min, x_max, y_min, y_max):
     graph = Graph(function)
     graph.fill(x_min, x_max, y_min, y_max)  # x max, x min, y max, y min
     graph.scale()
+
+    renderer = Renderer(graph.scaled_array)
+    renderer.render()
+    
 
 
 generate_graph(raw_function, x_min, x_max, y_min, y_max)

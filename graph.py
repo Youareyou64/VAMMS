@@ -2,12 +2,13 @@ import math
 import cexprtk
 import matplotlib
 import numpy as np
+import config
 
 
 # set this value to number of discrete points in physical system
 global num_points_x, num_points_y 
-num_points_x: int = 10
-num_points_y: int = 10
+num_points_x: int = config.x_points
+num_points_y: int = config.y_points
 st = cexprtk.Symbol_Table({'x':1.0, 'y':1.0}, add_constants=True)
 
 class Graph:
@@ -69,9 +70,9 @@ class Graph:
             for y in range(num_points_y):
                 self.scaled_array[x, y] = (self.array[x, y] - min)/(max - min)
                 #sets array to be percentage values between 0 and 1 corresponding to height
-        # print("SCALED ARRAY: ")
-        # print(np.matrix(self.scaled_array))
+        #print("SCALED ARRAY: ")
+        #print(np.matrix(self.scaled_array))
 
-
+  
 
 
