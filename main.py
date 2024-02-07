@@ -1,12 +1,10 @@
 # Dependencies
 import math
 import numpy as np
-
-# Classes
-from graph import Graph
 from connection import Connection
-import renderer
+from graph import Graph
 from renderer import Renderer
+
 
 raw_function = input("Enter your function: f(x,y)=")
 x_min = int(input("Minimum x value (inclusive): ")) or 0
