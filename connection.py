@@ -19,7 +19,7 @@ class Connection:
             self.ser.write(data.encode())
             print(f"Sent command {data}")
         except Exception as e:
-            print(f"Error: {e}")
+            print(f"Error : {e}")
             # print(f"Error encountered during GCode send: {data}")
 
 
