@@ -22,6 +22,7 @@ class Renderer:
                 connection.send(f"G0 X{x} Y{y}") # Move XY gantry
                 
                 connection.send(f"Z{z}") # Move linear actuator as Z axis
+                connection.send("Z0") # Return to z = 0
                 
                 # print(self.arr2D[x, y])
             print('\n')
