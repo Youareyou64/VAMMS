@@ -12,17 +12,19 @@ class Renderer:
     def render(self):
         connection = Connection()
 
-        connection.send("G28") # Home all axes - modify to only x + y?
-        
+        # connection.send("G28") # Home all axes - modify to only x + y?
+        connection.send("M17\n")
+        # connection.send("G0 Y2000\n")
         
         for x in range(config.x_points):
             for y in range(config.y_points):
                 z = self.arr2D[x, y]
                 # X and Y values will need to be compensated for physical dimensions by multiplying by total axis length (in mm)
-                connection.send(f"G0 X{x} Y{y}") # Move XY gantry
+                connection.send(f"G0 X{x} Y{y}\n") # Move XY gantry
+
                 
-                connection.send(f"Z{z}") # Move linear actuator as Z axis
-                connection.send("Z0") # Return to z = 0
+                connection.send(f"Z{z}\n") # Move linear actuator as Z axis
+                connection.send("Z0\n") # Return to z = 0
                 
                 # print(self.arr2D[x, y])
             print('\n')

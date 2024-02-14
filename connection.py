@@ -2,7 +2,7 @@ import serial
 import time
 
 serial_path = 'COM3'
-baud_rate = 9600
+baud_rate = 115200
 
 
 class Connection:
@@ -15,11 +15,17 @@ class Connection:
             print(f"Error encountered during connection: {e}")
             
     def send(self, data):
-        try:
-            self.ser.write(data.encode())
-            print(f"Sent command {data}")
-        except Exception as e:
-            print(f"Error : {e}")
+        #try:
+        time.sleep(2)
+        self.ser.write(data.encode())
+        print(f"Sent command {data}")
+        time.sleep(1)
+        response = self.ser.read(64)
+        print(f"Response: {response}")
+        time.sleep(2)
+
+        #except Exception as e:
+            # print(f"Error : {e}")
             # print(f"Error encountered during GCode send: {data}")
 
 
