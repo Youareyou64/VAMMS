@@ -16,18 +16,22 @@ class Connection:
             
     def send(self, data):
         formatted = data + "\n"
-        try:
-            time.sleep(2)
-            self.ser.write(formatted.encode())
-            print(f"Sent command {data}")
-            time.sleep(1)
-            response = self.ser.read(64)
-            print(f"Response: {response}")
-            time.sleep(2)
-
-        except Exception as e:
-            print(f"Error : {e}")
-            print(f"Error encountered during GCode send: {data}")
+        success = False
+        while(not success):
+            try:
+                time.sleep(2)
+                self.ser.write(formatted.encode())
+                print(f"Sent command {data}")
+                time.sleep(1)
+                response = self.ser.read(64)
+                print(f"Response: {response}")
+                success = True
+                time.sleep(2)
+    
+            except Exception as e:
+                print(f"Error : {e}")
+                print(f"Error encountered during GCode send: {data}")
+                time.sleep(5)
 
 
     
