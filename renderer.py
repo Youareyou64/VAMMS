@@ -20,9 +20,9 @@ class Renderer:
             for y in range(config.y_points):
                 z = self.arr2D[x, y]
                 # X and Y values will need to be compensated for physical dimensions by multiplying by total axis length (in mm)
-                connection.send(f"G0 X{x} Y{y}") # Move XY gantry
+                connection.send(f"G0 X{x * config.x_length / config.x_points} Y{y * config.y_length / config.y_points}") # Move XY gantry
                 
-                connection.send(f"G0 Z{z}") # Move linear actuator as Z axis
+                connection.send(f"G0 Z{z * config.z_height}") # Move linear actuator as Z axis
                 connection.send("G0 Z0") # Return to z = 0
                 
                 # print(self.arr2D[x, y])

@@ -4,9 +4,13 @@ import numpy as np
 from connection import Connection
 from graph import Graph
 from renderer import Renderer
+import dance
 
 
 raw_function = input("Enter your function: f(x,y)=")
+if(raw_function) == "SJM":
+    dance.dance()
+    raw_function = input("Enter your function: f(x,y)=")
 x_min = int(input("Minimum x value (inclusive): ")) or 0
 x_max = int(input("Maximum x value (exclusive): ")) or 10
 y_min = int(input("Minimum y value (inclusive): ")) or 0
