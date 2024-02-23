@@ -2,6 +2,9 @@ from colors import Colors
 from connection import Connection
 import config
 import numpy as np
+import sys
+
+import time
 import numpy.typing as npt
 
 
@@ -13,7 +16,8 @@ class Renderer:
     def render(self):
         connection = Connection()
 
-        # connection.send("G28") # Home all axes - modify to only x + y?
+        connection.send("G28 X Y") # Home all axes
+        time.sleep(10)
         connection.send("M17") # Enable steppers
         connection.send(f"M220 S{config.feedrate}")
         # connection.send("G0 Y2000")
@@ -42,6 +46,7 @@ class Renderer:
                 except KeyboardInterrupt:
                     connection.send("M18") # disable steppers on emergency exit
                     print(Colors.RED + "Emergency Stop Triggered" + Colors.RESET + " | Steppers Disabled")
+                    sys.exit()
 
             print('\n')
 
