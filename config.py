@@ -4,9 +4,9 @@ y_points = 5
 
 # Physical dimensions of the system in mm
 
-x_length = 330
+x_length = 340
 y_length = 360
-z_height = 50
+z_height = 100
 
 
 # Speed multiplier (percentage)

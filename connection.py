@@ -1,7 +1,7 @@
 import serial
 import time
 
-serial_path = 'COM3'
+serial_path = 'COM4'
 baud_rate = 115200
 
 

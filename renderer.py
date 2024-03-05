@@ -34,19 +34,19 @@ class Renderer:
                 
                 # print(self.arr2D[x, y])
 
-                try:
-                    z = self.arr2D[x, y]
-                    # X and Y values will need to be compensated for physical dimensions by multiplying by total axis length (in mm)
-                    connection.send(f"G0 X{x} Y{y}") # Move XY gantry
-                    
-                    connection.send(f"G0 Z{z}") # Move linear actuator as Z axis
-                    connection.send("G0 Z0") # Return to z = 0
-                    
-                    # print(self.arr2D[x, y])
-                except KeyboardInterrupt:
-                    connection.send("M18") # disable steppers on emergency exit
-                    print(Colors.RED + "Emergency Stop Triggered" + Colors.RESET + " | Steppers Disabled")
-                    sys.exit()
+                # try:
+                #     z = self.arr2D[x, y]
+                #     # X and Y values will need to be compensated for physical dimensions by multiplying by total axis length (in mm)
+                #     connection.send(f"G0 X{x} Y{y}") # Move XY gantry
+                #
+                #     connection.send(f"G0 Z{z}") # Move linear actuator as Z axis
+                #     connection.send("G0 Z0") # Return to z = 0
+                #
+                #     # print(self.arr2D[x, y])
+                # except KeyboardInterrupt:
+                #     connection.send("M18") # disable steppers on emergency exit
+                #     print(Colors.RED + "Emergency Stop Triggered" + Colors.RESET + " | Steppers Disabled")
+                #     sys.exit()
 
             print('\n')
 
