@@ -6,7 +6,7 @@ y_points = 5
 
 x_length = 340
 y_length = 360
-z_height = 100
+z_height = 300
 
 
 # Speed multiplier (percentage)
