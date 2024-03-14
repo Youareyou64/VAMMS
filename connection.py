@@ -36,15 +36,15 @@ class Connection:
         else:
             try:
                 move_complete = False
-                time.sleep(1)
+                # time.sleep(1)
                 self.ser.write(formatted.encode())
                 print(f"Sent command {data}")
-                time.sleep(1)
+                time.sleep(0.5)
                 while(move_complete==False):
 
                     response = self.ser.read(64)
                     print(f"Response: {response.decode()}")
-                    time.sleep(1)
+                    time.sleep(0.5)
                     if ("busy" not in response.decode() and "processing" not in response.decode()):
                         move_complete = True
                         print("move complete")

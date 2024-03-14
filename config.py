@@ -10,5 +10,9 @@ z_height = 300
 
 
 # Speed multiplier (percentage)
-feedrate = 150
+feedrate = 400
+z_feedrate = 3000
 
+# Use the below speeds to define firmware machine limits
+xy_speed = 500
+z_speed = 75
