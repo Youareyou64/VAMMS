@@ -26,7 +26,7 @@ class Renderer:
         # connection.send("M17") # Enable steppers
         # connection.send("M206 Z-800")
         # home offsets
-        connection.send("M206 X-18")
+        connection.send("M206 X-1")
         connection.send("M206 Y-80")
         connection.send("M206 Z-4")
         # connection.send("M503")
