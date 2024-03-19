@@ -2,6 +2,7 @@ import serial
 import time
 
 serial_path = 'COM4'
+serial_list = ["COM1", "COM2", "COM3", "COM4", "COM5"]
 baud_rate = 115200
 
 

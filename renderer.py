@@ -19,6 +19,7 @@ class Renderer:
         # connection.send("G0 Z650") # reintroduction of rod
         # connection.send("G0 Z100")
         connection.send("G28 Z")
+        time.sleep(1)
         connection.send("G28 X Y") # Home all axes
 
         # time.sleep(2)
