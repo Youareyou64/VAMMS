@@ -16,14 +16,18 @@ class Renderer:
     def render(self):
         connection = Connection()
         connection.send("M18 S60")
+        # connection.send("G0 Z650") # reintroduction of rod
         # connection.send("G0 Z100")
-
+        connection.send("G28 Z")
         connection.send("G28 X Y") # Home all axes
 
         # time.sleep(2)
         # connection.send("M17") # Enable steppers
-        connection.send("M206 X-4")
-        connection.send("M206 Y-4")
+        # connection.send("M206 Z-800")
+        # home offsets
+        connection.send("M206 X-18")
+        connection.send("M206 Y-80")
+        connection.send("M206 Z-4")
         # connection.send("M503")
         # connection.send(f"M220 S{config.feedrate}")
         connection.send(f"M203 X{config.xy_speed}, Y{config.xy_speed}, Z{config.z_speed}")
@@ -36,10 +40,12 @@ class Renderer:
                 z = self.arr2D[x, y]
                 # X and Y values will need to be compensated for physical dimensions by multiplying by total axis length (in mm)
                 # connection.send(f"M220 S{config.feedrate}")
-                connection.send(f"G0 X{x * config.x_length / config.x_points} Y{y * config.y_length / config.y_points} F1500") # Move XY gantry
-
+                connection.send(f"G0 X{x * config.x_length / config.x_points} Y{y * config.y_length / config.y_points}") # Move XY gantry
+                print(f"Rendering: X{x * config.x_length / config.x_points} Y{y * config.y_length / config.y_points}")
                 # connection.send(f"M220 S{config.z_feedrate}")
-                connection.send(f"G0 Z{-1 * z * config.z_height}") # Move linear actuator as Z axis
+
+                connection.send(f"G0 Z{z * config.z_height}") # Move linear actuator as Z axis
+
                 connection.send("G0 Z0") # Return to z = 0
                 
                 # print(self.arr2D[x, y])
