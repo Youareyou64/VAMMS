@@ -5,6 +5,9 @@ serial_path = 'COM4'
 serial_list = ["COM1", "COM2", "COM3", "COM4", "COM5"]
 baud_rate = 115200
 
+global globalresponse
+globalresponse = ""
+
 
 class Connection:
     def __init__(self):
@@ -26,7 +29,7 @@ class Connection:
             time.sleep(1)
             while(homing_complete == False):
                 response = self.ser.read(64)
-                print(f"Response: {response.decode()}")
+                # print(f"Response: {response.decode()}")
                 time.sleep(1)
                 if("busy" not in response.decode() and "processing" not in response.decode()):
                     homing_complete = True
@@ -44,17 +47,24 @@ class Connection:
                 while(move_complete==False):
 
                     response = self.ser.read(64)
-                    print(f"Response: {response.decode()}")
-                    time.sleep(0.5)
+                    # print(f"Response: {response.decode()}")
+                    time.sleep(0.6)
+                    global globalresponse
+                    globalresponse = response.decode()
                     if ("busy" not in response.decode() and "processing" not in response.decode()):
                         move_complete = True
-                        print("move complete")
+                        print(f"move complete {data}")
                     else:
-                        print("move ongoing")
+                        pass
+                        # print("move ongoing")
 
             except Exception as e:
                 print(f"Error : {e}")
                 print(f"Error encountered during GCode send: {data}")
+
+    def get_state(self):
+        return globalresponse
+
 
 
     

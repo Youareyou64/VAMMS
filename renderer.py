@@ -18,6 +18,7 @@ class Renderer:
         connection.send("M18 S60")
         # connection.send("G0 Z650") # reintroduction of rod
         # connection.send("G0 Z100")
+        connection.send(f"M203 Z{config.z_speed}")
         connection.send("G28 Z")
         time.sleep(1)
         connection.send("G28 X Y") # Home all axes
@@ -35,17 +36,20 @@ class Renderer:
 
         # connection.send("G0 Y2000")
         
-        for x in range(config.x_points):
-            for y in range(config.y_points):
+        for y in range(config.y_points):
+            for x in range(config.x_points):
 
                 z = self.arr2D[x, y]
                 # X and Y values will need to be compensated for physical dimensions by multiplying by total axis length (in mm)
                 # connection.send(f"M220 S{config.feedrate}")
                 connection.send(f"G0 X{x * config.x_length / config.x_points} Y{y * config.y_length / config.y_points}") # Move XY gantry
-                print(f"Rendering: X{x * config.x_length / config.x_points} Y{y * config.y_length / config.y_points}")
+                print(f"Rendering: X{x}, Y{y}")
+                print(f"At: X{x * config.x_length / config.x_points} Y{y * config.y_length / config.y_points}")
                 # connection.send(f"M220 S{config.z_feedrate}")
 
+                # SWAP THESE FOR NORMAL BEHAVIOR
                 connection.send(f"G0 Z{z * config.z_height}") # Move linear actuator as Z axis
+                # connection.send(f"G0 Z10")
 
                 connection.send("G0 Z0") # Return to z = 0
                 
@@ -66,6 +70,14 @@ class Renderer:
                 #     sys.exit()
 
             print('\n')
+            ready = False
+            while(not ready):
+                print("checking state")
+                if ("busy" not in connection.get_state() and "processing" not in connection.get_state()):
+                    ready = True
+                    print("State ready confirmed")
+                time.sleep(3)
+            time.sleep(2)
 
         print("Render complete")
         connection.send("M18")
