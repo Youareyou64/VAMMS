@@ -71,13 +71,27 @@ class Renderer:
 
             print('\n')
             ready = False
-            while(not ready):
-                print("checking state")
-                if ("busy" not in connection.get_state() and "processing" not in connection.get_state()):
-                    ready = True
-                    print("State ready confirmed")
-                time.sleep(3)
+            # while(not ready):
+            #     print("checking state")
+            #     if ("busy" not in connection.get_state() and "processing" not in connection.get_state()):
+            #         ready = True
+            #         print("State ready confirmed")
+            #     time.sleep(3)
+
+            # REMOVE BELOW IF M118 DOES NOT WORK AS EXPECTED
             time.sleep(2)
+            connection.send("M400") # Finish all buffered moves
+            connection.send("M118 E1 Row Complete") # Echo message for next row detection
+
+            while(not ready):
+                print(Colors.MAGENTA + "Awaiting cue to move to next row" + Colors.RESET)
+                time.sleep(1)
+                if ('Row Complete' in connection.get_state()):
+                    ready = True
+                    print(Colors.CYAN + "Row completed, moving on" + Colors.RESET)
+                else:
+                    print("Row not yet complete, waiting (renderer.py line 81)")
+
 
         print("Render complete")
         connection.send("M18")
