@@ -59,12 +59,17 @@ class Connection:
                     time.sleep(0.6)
                     global globalresponse
                     globalresponse = response.decode()
-                    if ("busy" not in response.decode() and "processing" not in response.decode()):
+                    # if ("busy" not in response.decode() and "processing" not in response.decode()):
+                    #     move_complete = True
+                    #     print(f"move complete {data}, response: {response.decode()}")
+
+                    if ("ok" in response.decode() and "processing" not in response.decode()):
                         move_complete = True
                         print(f"move complete {data}, response: {response.decode()}")
+
                     else:
                         pass
-                        # print("move ongoing")
+                        print(f"move ongoing | response: {response.decode()}")
 
             except Exception as e:
                 print(f"Error : {e}")
