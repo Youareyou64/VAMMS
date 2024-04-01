@@ -64,5 +64,5 @@ generate_graph(cleaned_function, x_min, x_max, y_min, y_max)
 
 #model = renderer
 #renderer.__init__(model,graph3D.zArray)
-#render(model)
+#render(model) 
 
