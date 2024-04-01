@@ -9,6 +9,9 @@ baud_rate = 115200
 global globalresponse
 globalresponse = ""
 
+global ready_for_row
+ready_for_row = False
+
 
 def connection_delay(seconds):
     start_time = time.monotonic()
@@ -58,14 +61,25 @@ class Connection:
                     # print(f"Response: {response.decode()}")
                     time.sleep(0.6)
                     global globalresponse
+                    global ready_for_row
+
                     globalresponse = response.decode()
+                    if('Row Complete' in globalresponse):
+                        ready_for_row = True
+
+
                     # if ("busy" not in response.decode() and "processing" not in response.decode()):
                     #     move_complete = True
                     #     print(f"move complete {data}, response: {response.decode()}")
 
                     if ("ok" in response.decode() and "processing" not in response.decode()):
                         move_complete = True
+
                         print(f"move complete {data}, response: {response.decode()}")
+
+                        if('Row Complete' in data):
+                            self.override_ready()
+                            print("Row Ready initiated from line 83")
 
                     else:
                         pass
@@ -77,6 +91,31 @@ class Connection:
 
     def get_state(self):
         return globalresponse
+
+    def read_next(self):
+        global globalresponse
+        response = self.ser.readline()
+        globalresponse = response.decode()
+
+        global ready_for_row
+        if('Row Complete' in globalresponse):
+            ready_for_row = True
+
+    def is_ready_for_row(self):
+        global ready_for_row
+        print(f'Row Ready: {ready_for_row}')
+        return ready_for_row
+
+    def reset_row(self):
+        global ready_for_row
+        ready_for_row = False
+        print("row state reset")
+
+    def override_ready(self):
+        global ready_for_row
+        ready_for_row = True
+        print("Ready override triggered")
+
 
 
 

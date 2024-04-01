@@ -81,12 +81,12 @@ class Renderer:
             # REMOVE BELOW IF M118 DOES NOT WORK AS EXPECTED
             time.sleep(2)
             connection.send("M400") # Finish all buffered moves
-            connection.send("M118 E1 Row Complete") # Echo message for next row detection
+            connection.send("M118 Row Complete") # Echo message for next row detection
 
             while(not ready):
                 print(Colors.MAGENTA + "Awaiting cue to move to next row" + Colors.RESET)
                 time.sleep(1)
-                if ('Row Complete' in connection.get_state()):
+                if (connection.is_ready_for_row()):
                     ready = True
                     print(Colors.CYAN + "Row completed, moving on" + Colors.RESET)
                 else:
