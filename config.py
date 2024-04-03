@@ -4,7 +4,7 @@ y_points = 11
 
 # Physical dimensions of the system in mm
 
-x_length = 355
+x_length = 360
 y_length = 355
 z_height = 165 * 4.85
 
