@@ -23,6 +23,8 @@ class Renderer:
         time.sleep(1)
         connection.send("G28 X Y") # Home all axes
 
+        connection.send("M120") # enable endstops
+
         # time.sleep(2)
         # connection.send("M17") # Enable steppers
         # connection.send("M206 Z-800")
@@ -36,8 +38,8 @@ class Renderer:
 
         # connection.send("G0 Y2000")
         
-        for y in range(config.y_points):
-            for x in range(config.x_points):
+        for y in range(3, config.y_points-1):
+            for x in range(0, config.x_points):
 
                 z = self.arr2D[x, y]
                 # X and Y values will need to be compensated for physical dimensions by multiplying by total axis length (in mm)
