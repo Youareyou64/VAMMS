@@ -30,7 +30,7 @@ class Renderer:
         # connection.send("M206 Z-800")
         # home offsets
         connection.send("M206 X-1")
-        connection.send("M206 Y-80")
+        connection.send("M206 Y-70")
         connection.send("M206 Z-4")
         # connection.send("M503")
         # connection.send(f"M220 S{config.feedrate}")
@@ -38,7 +38,7 @@ class Renderer:
 
         # connection.send("G0 Y2000")
         
-        for y in range(3, config.y_points-1):
+        for y in range(0, config.y_points-1):
             for x in range(0, config.x_points):
 
                 z = self.arr2D[x, y]
