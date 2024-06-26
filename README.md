@@ -29,7 +29,7 @@ commands to be executed.
 
 ## Contact
 
-[Jack Sloan](https://www.linkedin.com/in/jack-sloan-1378b330b/) (2024) — jackasloan@gmail.com 
+[Jack Sloan](https://www.linkedin.com/in/jackasloan/) (2024) — jackasloan@gmail.com 
 
 Shawn Johnson (2024) — johnson.28614@gmail.com  
 
