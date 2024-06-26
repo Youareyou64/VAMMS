@@ -5,7 +5,6 @@ import numpy as np
 import config
 
 
-# set this value to number of discrete points in physical system
 global num_points_x, num_points_y 
 num_points_x: int = config.x_points
 num_points_y: int = config.y_points
@@ -73,9 +72,9 @@ class Graph:
         for x in range(num_points_x):
             for y in range(num_points_y):
                 self.scaled_array[x, y] = (self.array[x, y] - min)/(max - min)
-                #sets array to be percentage values between 0 and 1 corresponding to height
-        #print("SCALED ARRAY: ")
-        #print(np.matrix(self.scaled_array))
+                # sets array to be percentage values between 0 and 1 corresponding to height
+        # print("SCALED ARRAY: ")
+        # print(np.matrix(self.scaled_array))
 
   
 

@@ -1,3 +1,7 @@
+# VAMMS - A Project Lead The Way project
+# Jack Sloan, Shawn Johnson, and Matthew Wincek
+# 2023-2024
+
 # Dependencies
 
 import math
@@ -43,6 +47,7 @@ def clean_function(function):
 
     return function
 
+
 def generate_graph(function, x_min, x_max, y_min, y_max):
     graph = Graph(function)
     graph.fill(x_min, x_max, y_min, y_max)  # x max, x min, y max, y min
@@ -57,12 +62,4 @@ cleaned_function = clean_function(raw_function)
 generate_graph(cleaned_function, x_min, x_max, y_min, y_max)
 
 
-
-# graph3D = Graph(raw_function)
-# graph3D.fill(0, 10, 0, 10) # x max, x min, y max, y min
-# print(np.matrix(graph3D.array))
-
-#model = renderer
-#renderer.__init__(model,graph3D.zArray)
-#render(model) 
 

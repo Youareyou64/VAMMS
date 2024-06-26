@@ -1,6 +1,6 @@
-# Physical Multivariable Equation Modeling
+# VAMMS - Vertically Actuated Multivariable Modeling System
 
-A Project Lead the Way (PLTW) Engineering Development and Design project by Jack Sloan, Shawn Johnson, and Matthew Wincek.
+A Project Lead the Way (PLTW) Engineering Development and Design project by **[Jack Sloan](https://github.com/Youareyou64), Shawn Johnson, and Matthew Wincek**.
 
 ## Purpose
 

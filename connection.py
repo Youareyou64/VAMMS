@@ -1,3 +1,5 @@
+# Connection handles serial connection with the printer mainboard
+
 import serial
 import time
 import threading
@@ -47,17 +49,17 @@ class Connection:
                 else:
                     print("Homing ongoing")
 
-        # All other moves
+        # Process all other moves
         else:
             try:
                 move_complete = False
-                # time.sleep(1)
+
                 self.ser.write(formatted.encode())
                 print(f"Sent command {data}")
                 connection_delay(1)
                 while move_complete==False:
 
-                    response = self.ser.readline() # switch back to .read(64)?
+                    response = self.ser.readline()
                     # print(f"Response: {response.decode()}")
                     time.sleep(0.6)
                     global globalresponse
@@ -66,11 +68,6 @@ class Connection:
                     globalresponse = response.decode()
                     if('Row Complete' in globalresponse):
                         ready_for_row = True
-
-
-                    # if ("busy" not in response.decode() and "processing" not in response.decode()):
-                    #     move_complete = True
-                    #     print(f"move complete {data}, response: {response.decode()}")
 
                     if ("ok" in response.decode() and "processing" not in response.decode()):
                         move_complete = True

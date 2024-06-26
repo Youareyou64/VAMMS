@@ -2,3 +2,4 @@
 *.toml
 *.replit
 *.pyc
+*.pycc

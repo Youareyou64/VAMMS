@@ -1,3 +1,5 @@
+# series of test XY gantry moves
+
 from connection import Connection
 import config
 import numpy as np

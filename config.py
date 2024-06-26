@@ -6,7 +6,7 @@ y_points = 11
 
 x_length = 360
 y_length = 355
-z_height = 165 * 4.85
+z_height = 165 * 4.85 # this scaling is weird because we are not using standard lead screws
 
 
 # Speed multiplier (percentage)
